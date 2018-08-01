@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习练习练习</title>
+    <script src="jQuery3.3.1.js" type="text/javascript"></script>
+</head>
+<body>
+  <p><a href="#" class="tooltip" title="这是我的超链接提示1">提示1</a></p>
+  <p><a href="#" class="tooltip" title="这是我的超链接提示2">提示2</a></p>
+  <p><a href="#" class="tooltip" title="这是自带提示1">自带提示1</a></p>
+  <p><a href="#" class="tooltip" title="这是自带提示2">自带提示2</a></p>
+</body>
+<script>
+  $(function() {
+    var x = 10;
+    var y = 20;
+    $("a.tooltip").mouseover(function (e) {
+      this.mytitle = this.title;
+      this.title = "";
+      $("body").append("<div id='tooltip' >" + this.mytitle + "</div>");
+      $("#tooltip")
+        .css({
+          "position":"fixed",/*默认值为static，在大部分浏览器里会忽视位置声明，
+          改为absolute或fixed才能实现div元素的移动*/
+          "top": (e.pageY + y) + "px",
+          "left": (e.pageX + x) + "px"
+        }).show("fast");
+    }).mouseout(function () {
+      this.title = this.mytitle;
+      $("#tooltip").remove();
+    }).mousemove(function (e) {
+      $("#tooltip")
+        .css({
+          "top": (e.pageY + y) + "px",
+          "left": (e.pageX + x) + "px"
+        })
+    })
+  })
+</script>
+</html>
