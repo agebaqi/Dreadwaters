@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+      .divOuter{
+        position:relative;
+        width:600px;
+        height:250px;
+        margin-left:340px;
+        margin-top:200px;
+        font-size:20px;
+        border:20px solid #FF9933;
+      }
+      .divInner{
+        position:relative;
+        width:80px;
+        height:42px;
+        margin-top:100px;
+      }
+    </style>
+</head>
+<body onload="moveWords()">
+  <div id="outerId" name="frameDiv" class="divOuter">
+    <div id="innerId" class="divInner">
+      滚动字幕
+      <br/>
+    </div>
+  </div>
+ <script>
+   function moveWords(){
+     setInterval(changeLocation,10);
+   }
+   function changeLocation(){
+     var outerDiv=document.getElementById("outerId");
+     var innerDiv=document.getElementById("innerId");
+     var outerWidth=outerDiv.clientWidth-innerDiv.clientWidth+"px";
+     if(innerDiv.style.left==outerWidth){
+       innerDiv.style.left=0+"px";
+     }else{
+       innerDiv.style.left=innerDiv.offsetLeft+1+"px";
+     }
+   }
+ </script>
+</body>
+</html>
